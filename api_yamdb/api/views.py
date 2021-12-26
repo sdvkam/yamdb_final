@@ -9,6 +9,7 @@ from rest_framework.permissions import (IsAuthenticated,
                                         IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+
 from reviews.models import Categorie, Comment, Genre, Review, Title, User
 
 from .filters import TitleFilter
@@ -138,9 +139,8 @@ class CommentViewSet(viewsets.ModelViewSet):
                           | IsAdminOrReadOnly | IsSuperuser]
 
     def get_queryset(self):
-        comments = Comment.objects.filter(review__id=self.kwargs['review_id'],
-                                          title__id=self.kwargs['title_id'])
-        return comments
+        return Comment.objects.filter(review__id=self.kwargs['review_id'],
+                                      title__id=self.kwargs['title_id'])
 
     def perform_create(self, serializer):
         review = get_object_or_404(Review, id=self.kwargs['review_id'],

@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+
 from api.utilities import get_confirmation_code
 
 ROLE_CHOICES = [('user', 'user'),
