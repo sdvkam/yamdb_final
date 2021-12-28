@@ -37,7 +37,6 @@ def send_confirmation_code(request):
     except SMTPException:
         return Response('Ошибка при отправке email',
                         status=status.HTTP_400_BAD_REQUEST)
-    data['confirmation_code'] = confirmation_code
     return Response(data, status=status.HTTP_200_OK)
 
 
