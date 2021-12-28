@@ -24,10 +24,12 @@ jobs:
         python -m pip install --upgrade pip 
         pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
         pip install -r api_yamdb/requirements.txt 
-    - name: Tests with flake8 and pytest
+    - name: Test check PEP8 - flake8
       run: |
         python -m flake8
-        pytest
+    - name: Own Tests  - pytest
+      run: |
+        pytest 
   build_and_push_to_docker_hub:
       name: Push Docker image to Docker Hub
       runs-on: ubuntu-latest
